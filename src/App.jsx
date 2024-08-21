@@ -20,4 +20,31 @@ function App() {
     }
     fetchData();
   }, []);
+
+  const shuffleArray = (array) => {
+    return array.sort(() => Math.random() - 0.5);
+  };
+
+  const handleCardClick = (id) => {
+    if (clickedCards.includes(id)) {
+      setCurrentScore(0);
+      setClickedCards([]);
+    } else {
+      setClickedCards([...clickedCards, id]);
+      const newScore = currentScore + 1;
+      setCurrentScore(newScore);
+      if (newScore > bestScore) {
+        setBestScore(newScore);
+      }
+      setCards(shuffleArray(cards));
+    }
+  };
+
+  return (
+    <div>
+
+    </div>
+  );
 }
+
+export default App;
