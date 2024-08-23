@@ -10,14 +10,20 @@ function App() {
 
   useEffect(() => {
     async function fetchData() {
-      const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=12');
-      const data = await response.json();
-      const fetchedCards = data.results.map((pokemon, index) => ({
-        id: index + 1,
-        name: pokemon.name,
-        image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${index + 1}.png`,
-      }));
-      setCards(fetchedCards);
+      try {
+        const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=12');
+        const data = await response.json();
+        console.log("Fetched data: ", data);
+        const fetchedCards = data.results.map((pokemon, index) => ({
+          id: index + 1,
+          name: pokemon.name,
+          image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${index + 1}.png`,
+        }));
+        console.log("Formatted cards: ", fetchedCards);
+        setCards(fetchedCards);
+      } catch (error) {
+        console.error("Error fetching data: ", error);
+      }
     }
     fetchData();
   }, []);

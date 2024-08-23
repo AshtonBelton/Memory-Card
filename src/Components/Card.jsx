@@ -13,6 +13,23 @@ function Card({ card, handleClick }) {
     };
 
     return (
+        <div className="card" onClick={() => handleClick(card.id)}>
+          <div className="card-inner">
+            <div className="card-front">
+              <img src={card.image} alt={card.name} />
+              <p>{card.name}</p>
+            </div>
+            <div className="card-back">
+              <img src="path/to/pokemon-card-back.jpg" alt="Card Back" />
+            </div>
+          </div>
+        </div>
+    );
+
+
+
+/* 
+    return (
         <div className={`card ${flipped ? 'flip' : ''}`} onClick={handleCardClick}>
             <div className="card-inner">
                 <div className="card-font">
@@ -25,6 +42,7 @@ function Card({ card, handleClick }) {
             </div>
         </div>
     );
+*/
 }
 
 export default Card;
