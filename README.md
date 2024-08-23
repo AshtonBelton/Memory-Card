@@ -8,3 +8,9 @@ Currently, two official plugins are available:
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
 # Memory-Card
+All images used are not mine and I do not own them. The images are used for practice purpose only.
+
+Credit for images used go to the owners:
+Background: https://assets.pokemon.com//assets/cms2/img/misc/virtual-backgrounds/masters/coast.jpg
+Back of pokemon card: https://www.pinterest.com/pin/192951165275476777/
+

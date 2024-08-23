@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import './App.css'
+import Scoreboard from './Components/ScoreBoard';
+import GameBoard from './Components/GameBoard';
 
 function App() {
   const [cards, setCards] = useState([]);
@@ -41,8 +42,9 @@ function App() {
   };
 
   return (
-    <div>
-
+    <div className='App'>
+      <Scoreboard currentScore={currentScore} bestScore={bestScore} />
+      <GameBoard cards={cards} handleCardClick={handleCardClick} />
     </div>
   );
 }
