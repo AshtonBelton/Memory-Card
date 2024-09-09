@@ -1,10 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Card from "./Card";
 import "../styles/GameBoard.css";
 
 function GameBoard({ cards, handleCardClick }) {
 	const [flipping, setFlipping] = useState(false);
 	const [shuffledCards, setShuffledCards] = useState(cards);
+
+	useEffect(() => {
+        if (cards !== shuffledCards) {
+            setShuffledCards(cards);
+        }
+    }, [cards]);
 
 	const shuffleArray = (array) => {
 		let shuffled = array.slice(); 
@@ -24,12 +30,21 @@ function GameBoard({ cards, handleCardClick }) {
 		}, 1000); 
 	};
 
+	useEffect(() => {
+        if (flipping) {
+            const timer = setTimeout(() => {
+                setFlipping(false);
+            }, 1500); 
+            return () => clearTimeout(timer);
+        }
+    }, [flipping]);
+
 
 	return (
 		<div className="game-board">
-		{cards.length > 0 ? (
-			cards.map((card) => (
-			<Card key={card.id} card={card} handleClick={handleShuffle} flipping={flipping} />
+		{shuffledCards.length > 0 ? (
+			shuffledCards.map((card) => (
+				<Card key={card.id} card={card} handleClick={handleShuffle} flipping={flipping} />
 			))
 		) : (
 			<p>Loading cards...</p>
