@@ -7,38 +7,28 @@ function GameBoard({ cards, handleCardClick }) {
 	const [shuffledCards, setShuffledCards] = useState(cards);
 
 	useEffect(() => {
-        if (cards !== shuffledCards) {
-            setShuffledCards(cards);
-        }
+        setShuffledCards(cards);
     }, [cards]);
 
-	const shuffleArray = (array) => {
-		let shuffled = array.slice(); 
-		for (let i = shuffled.length - 1; i > 0; i--) {
-			const j = Math.floor(Math.random() * (i + 1));
-			[shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-		}
-		return shuffled;
-	};
-
-	const handleShuffle = (cardId) => {
-		setFlipping(true); 
-		setTimeout(() => {
-			setShuffledCards(shuffleArray(cards));
-			handleCardClick(cardId); 
-			setFlipping(false); 
-		}, 1000); 
-	};
-
-	useEffect(() => {
-        if (flipping) {
-            const timer = setTimeout(() => {
-                setFlipping(false);
-            }, 1500); 
-            return () => clearTimeout(timer);
+    const shuffleArray = (array) => {
+        let shuffled = array.slice(); 
+        for (let i = shuffled.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
         }
-    }, [flipping]);
+        return shuffled;
+    };
 
+    const handleShuffle = (cardId) => {
+        if (!flipping) {
+            setFlipping(true);
+            setTimeout(() => {
+                setShuffledCards(shuffleArray(cards)); 
+                setFlipping(false); 
+            }, 1500);
+        }
+        handleCardClick(cardId); 
+    };
 
 	return (
 		<div className="game-board">

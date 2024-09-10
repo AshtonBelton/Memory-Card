@@ -19,7 +19,6 @@ function App() {
           name: pokemon.name,
           image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${index + 1}.png`,
         }));
-        console.log("Formatted cards: ", fetchedCards);
         setCards(fetchedCards);
       } catch (error) {
         console.error("Error fetching data: ", error);
@@ -27,10 +26,6 @@ function App() {
     }
     fetchData();
   }, []);
-
-  const shuffleArray = (array) => {
-    return array.sort(() => Math.random() - 0.5);
-  };
 
   const handleCardClick = (id) => {
     if (clickedCards.includes(id)) {
@@ -43,7 +38,6 @@ function App() {
       if (newScore > bestScore) {
         setBestScore(newScore);
       }
-      setCards(shuffleArray(cards));
     }
   };
 
